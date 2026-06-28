@@ -125,12 +125,12 @@ export default function Experience() {
                 <div className="glass rounded-2xl p-6 hover:bg-white/[0.07] transition-colors">
                   <div className="flex flex-wrap justify-between items-start gap-2 mb-3">
                     <div className="flex gap-3 items-start">
-                      <div className="w-10 h-10 rounded-lg glass flex items-center justify-center shrink-0 p-1.5 bg-white/5">
+                      <div className="w-14 h-14 rounded-xl glass flex items-center justify-center shrink-0 p-2 bg-white/5">
                         <Image
                           src={`${basePath}${exp.logo}`}
                           alt={exp.company}
-                          width={28}
-                          height={28}
+                          width={44}
+                          height={44}
                           className="object-contain"
                         />
                       </div>
