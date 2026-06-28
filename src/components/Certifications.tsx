@@ -69,12 +69,12 @@ export default function Certifications() {
             >
               <TiltCard>
                 <div className="glass rounded-2xl p-6 text-center group hover:bg-white/[0.07] transition-all cursor-default h-full">
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-xl glass flex items-center justify-center p-3 bg-white/5">
+                  <div className="w-28 h-28 mx-auto mb-4 rounded-2xl glass flex items-center justify-center p-4 bg-white/5">
                     <Image
                       src={`${basePath}${cert.logo}`}
                       alt={cert.issuer}
-                      width={60}
-                      height={60}
+                      width={80}
+                      height={80}
                       className="object-contain"
                     />
                   </div>
