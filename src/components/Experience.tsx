@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const experiences = [
   {
@@ -58,8 +59,15 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 80%", "end 20%"],
+  });
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
-    <section id="experience" className="section-padding">
+    <section id="experience" className="py-24 px-6">
       <div className="max-w-4xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -70,21 +78,40 @@ export default function Experience() {
           Experience
         </motion.h2>
 
-        <div className="relative">
-          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 opacity-30" />
+        <div className="relative" ref={containerRef}>
+          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-white/5" />
+          <motion.div
+            className="absolute left-[19px] top-0 w-px origin-top"
+            style={{
+              height: lineHeight,
+              background:
+                "linear-gradient(180deg, #6366f1, #a855f7, #ec4899)",
+            }}
+          />
 
           <div className="space-y-8">
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.12, duration: 0.5 }}
                 className="relative pl-12"
               >
-                <div
+                <motion.div
                   className="absolute left-3 top-6 w-3 h-3 rounded-full"
+                  style={{ backgroundColor: exp.color }}
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    delay: i * 0.12 + 0.2,
+                  }}
+                />
+                <div className="absolute left-[13px] top-[18px] w-[9px] h-[9px] rounded-full animate-ping opacity-30"
                   style={{ backgroundColor: exp.color }}
                 />
                 <div className="glass rounded-2xl p-6 hover:bg-white/[0.07] transition-colors">
@@ -105,7 +132,7 @@ export default function Experience() {
                         key={j}
                         className="text-sm text-gray-400 flex gap-2"
                       >
-                        <span className="text-indigo-500 mt-1">▹</span>
+                        <span className="text-indigo-500 mt-1 shrink-0">▹</span>
                         {point}
                       </li>
                     ))}

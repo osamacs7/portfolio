@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
+import AnimatedCounter from "./AnimatedCounter";
 
 const stats = [
   { value: "3.6", label: "GPA / 4.0" },
@@ -51,15 +52,9 @@ export default function About() {
           {stats.map((stat, i) => (
             <AnimatedSection key={stat.label} delay={i * 0.1}>
               <div className="glass rounded-2xl p-5 text-center group hover:bg-white/[0.07] transition-all">
-                <motion.p
-                  className="text-3xl font-bold gradient-text"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ type: "spring", delay: 0.3 + i * 0.1 }}
-                >
-                  {stat.value}
-                </motion.p>
+                <p className="text-3xl font-bold gradient-text">
+                  <AnimatedCounter value={stat.value} />
+                </p>
                 <p className="text-xs text-gray-500 mt-1">{stat.label}</p>
               </div>
             </AnimatedSection>

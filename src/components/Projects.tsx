@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import TiltCard from "./TiltCard";
 
 const projects = [
   {
@@ -63,8 +64,8 @@ export default function Projects() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
+            <TiltCard key={i}>
             <motion.a
-              key={i}
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -72,7 +73,6 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.15, duration: 0.6 }}
-              whileHover={{ y: -4 }}
               className="glass rounded-2xl overflow-hidden group hover:bg-white/[0.07] transition-all block"
             >
               <div
@@ -108,6 +108,7 @@ export default function Projects() {
                 </div>
               </div>
             </motion.a>
+            </TiltCard>
           ))}
         </div>
       </div>
