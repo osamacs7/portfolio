@@ -1,77 +1,51 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import TiltCard from "./TiltCard";
 
 const certs = [
   {
     name: "CompTIA Security+",
     issuer: "CompTIA",
-    color: "#e53e3e",
-    logo: (
-      <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none">
-        <rect x="4" y="8" width="32" height="24" rx="3" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M20 16v8M16 20h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    ),
+    color: "#c8202f",
+    logo: "/logos/comptia.png",
   },
   {
     name: "Cisco CCNA",
     issuer: "Cisco",
     color: "#1ba0d7",
-    logo: (
-      <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none">
-        <path d="M8 28V16M14 28V12M20 28V8M26 28V12M32 28V16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-      </svg>
-    ),
+    logo: "/logos/cisco.svg",
   },
   {
     name: "AWS Solutions Architect",
     issuer: "Amazon Web Services",
     color: "#ff9900",
-    logo: (
-      <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none">
-        <path d="M8 24C8 24 14 28 20 28C26 28 32 24 32 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M12 16L20 10L28 16L20 22Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-      </svg>
-    ),
+    logo: "/logos/aws.svg",
   },
   {
     name: "eWPT",
     issuer: "INE Security",
     color: "#6366f1",
-    logo: (
-      <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none">
-        <circle cx="20" cy="20" r="12" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M14 20L18 24L26 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
+    logo: "/logos/ine.png",
   },
   {
     name: "eJPT",
     issuer: "INE Security",
     color: "#a855f7",
-    logo: (
-      <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none">
-        <rect x="8" y="8" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M16 16L24 24M24 16L16 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    ),
+    logo: "/logos/ine.png",
   },
   {
     name: "Fortinet NSE 1–5",
     issuer: "Fortinet",
     color: "#ee3124",
-    logo: (
-      <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none">
-        <path d="M20 6L34 14V26L20 34L6 26V14Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M20 14L27 18V26L20 30L13 26V18Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" opacity="0.5"/>
-      </svg>
-    ),
+    logo: "/logos/fortinet.png",
   },
 ];
 
 export default function Certifications() {
+  const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
+
   return (
     <section id="certifications" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -95,12 +69,15 @@ export default function Certifications() {
             >
               <TiltCard>
                 <div className="glass rounded-2xl p-6 text-center group hover:bg-white/[0.07] transition-all cursor-default h-full">
-                  <span
-                    className="inline-block mb-3 transition-colors"
-                    style={{ color: cert.color }}
-                  >
-                    {cert.logo}
-                  </span>
+                  <div className="w-14 h-14 mx-auto mb-3 rounded-xl glass flex items-center justify-center p-2 bg-white/5">
+                    <Image
+                      src={`${basePath}${cert.logo}`}
+                      alt={cert.issuer}
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
+                  </div>
                   <h3 className="font-semibold text-white text-sm md:text-base mb-1">
                     {cert.name}
                   </h3>
