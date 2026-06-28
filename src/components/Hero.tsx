@@ -23,7 +23,7 @@ export default function Hero() {
           >
             <div className="w-32 h-32 rounded-full overflow-hidden ring-2 ring-indigo-500/50 ring-offset-4 ring-offset-[#0a0a1a]">
               <Image
-                src={`${basePath}/photo.svg`}
+                src={`${basePath}/photo.jpg`}
                 alt="Osama Alkarnawi"
                 width={128}
                 height={128}
