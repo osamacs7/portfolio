@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
@@ -14,11 +14,39 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      const sections = links.map((l) => l.href.slice(1));
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.getBoundingClientRect().top <= 150) {
+          setActive(sections[i]);
+          return;
+        }
+      }
+      setActive("");
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="glass-strong rounded-2xl px-6 py-3 flex items-center justify-between">
+        <motion.div
+          className={`rounded-2xl px-6 py-3 flex items-center justify-between transition-all ${
+            scrolled ? "glass-strong" : "bg-transparent"
+          }`}
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ type: "spring", stiffness: 200, damping: 30 }}
+        >
           <a href="#" className="text-xl font-bold gradient-text">
             OA
           </a>
@@ -28,9 +56,20 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-gray-400 hover:text-white transition-colors"
+                className={`text-sm transition-colors relative ${
+                  active === link.href.slice(1)
+                    ? "text-white"
+                    : "text-gray-400 hover:text-white"
+                }`}
               >
                 {link.label}
+                {active === link.href.slice(1) && (
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-indigo-500 rounded-full"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
               </a>
             ))}
           </div>
@@ -39,30 +78,15 @@ export default function Navbar() {
             className="md:hidden text-gray-400"
             onClick={() => setOpen(!open)}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {open ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
-        </div>
+        </motion.div>
 
         <AnimatePresence>
           {open && (
@@ -77,7 +101,9 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block py-2 text-gray-400 hover:text-white transition-colors"
+                  className={`block py-2 transition-colors ${
+                    active === link.href.slice(1) ? "text-indigo-400" : "text-gray-400 hover:text-white"
+                  }`}
                 >
                   {link.label}
                 </a>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import ScrollProgress from "@/components/ScrollProgress";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +24,8 @@ export default function RootLayout({
           <div className="absolute top-[40%] right-[-10%] w-[400px] h-[400px] rounded-full bg-purple-600/15 blur-[120px]" />
           <div className="absolute bottom-[-10%] left-[30%] w-[450px] h-[450px] rounded-full bg-pink-600/10 blur-[120px]" />
         </div>
+        <ParticleBackground />
+        <ScrollProgress />
         <Navbar />
         {children}
       </body>

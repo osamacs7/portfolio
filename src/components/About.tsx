@@ -1,23 +1,74 @@
 "use client";
 
 import { motion } from "framer-motion";
+import AnimatedSection from "./AnimatedSection";
+
+const stats = [
+  { value: "3.6", label: "GPA / 4.0" },
+  { value: "6", label: "Certifications" },
+  { value: "20+", label: "OT Systems Hardened" },
+  { value: "70+", label: "Students Trained" },
+];
+
+const details = [
+  {
+    icon: "🎓",
+    title: "Education",
+    desc: "BSc Computer Science — KFUPM",
+    detail: "GPA 3.6/4.0 · Dean's List · Second Honor",
+  },
+  {
+    icon: "📍",
+    title: "Location",
+    desc: "Saudi Arabia",
+    detail: "Open to remote & on-site opportunities",
+  },
+  {
+    icon: "📄",
+    title: "Publication",
+    desc: "Detection of DGA Domains",
+    detail: "ISA Saudi Conference",
+  },
+  {
+    icon: "🗣️",
+    title: "Languages",
+    desc: "Arabic (Native) · English (Fluent)",
+    detail: "Bilingual professional proficiency",
+  },
+];
 
 export default function About() {
   return (
-    <section id="about" className="section-padding">
+    <section id="about" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <AnimatedSection>
           <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text inline-block">
             About Me
           </h2>
+        </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="glass rounded-2xl p-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          {stats.map((stat, i) => (
+            <AnimatedSection key={stat.label} delay={i * 0.1}>
+              <div className="glass rounded-2xl p-5 text-center group hover:bg-white/[0.07] transition-all">
+                <motion.p
+                  className="text-3xl font-bold gradient-text"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", delay: 0.3 + i * 0.1 }}
+                >
+                  {stat.value}
+                </motion.p>
+                <p className="text-xs text-gray-500 mt-1">{stat.label}</p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          <AnimatedSection delay={0.1}>
+            <div className="glass rounded-2xl p-8 h-full">
               <p className="text-gray-300 leading-relaxed mb-4">
                 Security engineer with a BSc in Computer Science from{" "}
                 <span className="text-white font-medium">KFUPM</span>{" "}
@@ -38,35 +89,12 @@ export default function About() {
                 trained 70+ students in web pentesting and network security.
               </p>
             </div>
+          </AnimatedSection>
 
-            <div className="space-y-4">
-              {[
-                {
-                  icon: "🎓",
-                  title: "Education",
-                  desc: "BSc Computer Science — KFUPM",
-                  detail: "GPA 3.6/4.0 · Dean's List · Second Honor",
-                },
-                {
-                  icon: "📍",
-                  title: "Location",
-                  desc: "Saudi Arabia",
-                  detail: "Open to remote & on-site opportunities",
-                },
-                {
-                  icon: "📄",
-                  title: "Publication",
-                  desc: "Detection of DGA Domains",
-                  detail: "ISA Saudi Conference",
-                },
-                {
-                  icon: "🗣️",
-                  title: "Languages",
-                  desc: "Arabic (Native) · English (Fluent)",
-                  detail: "Bilingual professional proficiency",
-                },
-              ].map((item) => (
-                <div key={item.title} className="glass rounded-xl p-5 flex gap-4">
+          <div className="space-y-4">
+            {details.map((item, i) => (
+              <AnimatedSection key={item.title} delay={0.2 + i * 0.1}>
+                <div className="glass rounded-xl p-5 flex gap-4 hover:bg-white/[0.07] transition-all">
                   <span className="text-2xl">{item.icon}</span>
                   <div>
                     <h3 className="font-semibold text-white">{item.title}</h3>
@@ -74,10 +102,10 @@ export default function About() {
                     <p className="text-gray-500 text-xs mt-1">{item.detail}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </AnimatedSection>
+            ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
