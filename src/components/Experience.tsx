@@ -1,0 +1,121 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+const experiences = [
+  {
+    role: "OT Security & Industrial PI System Intern",
+    company: "INTECH Automation & Intelligence",
+    period: "Apr 2025 – Sep 2025",
+    color: "#6366f1",
+    points: [
+      "Hardened 20+ OT systems in a SABIC environment — Windows services, local policies, user access, endpoint protection",
+      "Designed full OSIsoft PI System architecture: PI Data Archive, PI AF, PI Vision, interface node across multiple machines",
+      "Configured Active Directory (Domain Controller) for secure authentication in the industrial environment",
+    ],
+  },
+  {
+    role: "Cybersecurity Intern",
+    company: "Fortinet",
+    period: "Jun 2024 – Dec 2024",
+    color: "#a855f7",
+    points: [
+      "Hands-on experience with FortiGate and FortiDeceptor security solutions",
+      "Explored threat detection techniques to understand attacker behavior and improve visibility",
+      "Applied log analysis and traffic inspection to identify suspicious patterns and misconfigurations",
+    ],
+  },
+  {
+    role: "Info Security & Networking Teaching Assistant",
+    company: "KFUPM",
+    period: "Aug 2024 – May 2026",
+    color: "#ec4899",
+    points: [
+      "Designed a large-scale enterprise network project for the Network Management & Security course",
+      "Led hands-on cybersecurity project: SSH honeypot deployment and attack analysis",
+    ],
+  },
+  {
+    role: "Cybersecurity Committee Lead",
+    company: "KFUPM",
+    period: "May 2023 – Jan 2025",
+    color: "#f59e0b",
+    points: [
+      "Led and instructed a Web Penetration Testing Bootcamp with structured hands-on training",
+      "Taught networking fundamentals for cybersecurity to 70+ students",
+    ],
+  },
+  {
+    role: "Lead Ambassador",
+    company: "Oracle",
+    period: "Mar 2025 – Jun 2025",
+    color: "#14b8a6",
+    points: [
+      "Promoted cloud computing courses and industry technologies within the university",
+      "Supported peer learning — course enrollment, technical questions, platform navigation",
+    ],
+  },
+];
+
+export default function Experience() {
+  return (
+    <section id="experience" className="section-padding">
+      <div className="max-w-4xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-bold mb-12 gradient-text inline-block"
+        >
+          Experience
+        </motion.h2>
+
+        <div className="relative">
+          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 opacity-30" />
+
+          <div className="space-y-8">
+            {experiences.map((exp, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative pl-12"
+              >
+                <div
+                  className="absolute left-3 top-6 w-3 h-3 rounded-full"
+                  style={{ backgroundColor: exp.color }}
+                />
+                <div className="glass rounded-2xl p-6 hover:bg-white/[0.07] transition-colors">
+                  <div className="flex flex-wrap justify-between items-start gap-2 mb-3">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">
+                        {exp.role}
+                      </h3>
+                      <p className="text-indigo-400 text-sm">{exp.company}</p>
+                    </div>
+                    <span className="text-xs text-gray-500 glass rounded-lg px-3 py-1">
+                      {exp.period}
+                    </span>
+                  </div>
+                  <ul className="space-y-2">
+                    {exp.points.map((point, j) => (
+                      <li
+                        key={j}
+                        className="text-sm text-gray-400 flex gap-2"
+                      >
+                        <span className="text-indigo-500 mt-1">▹</span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
