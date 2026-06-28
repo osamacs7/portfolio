@@ -48,7 +48,7 @@ export default function Navbar() {
           transition={{ type: "spring", stiffness: 200, damping: 30 }}
         >
           <a href="#" className="text-xl font-bold gradient-text">
-            OA
+            Osama
           </a>
 
           <div className="hidden md:flex items-center gap-8">

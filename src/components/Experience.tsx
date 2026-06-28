@@ -9,6 +9,13 @@ const experiences = [
     company: "INTECH Automation & Intelligence",
     period: "Apr 2025 – Sep 2025",
     color: "#6366f1",
+    logo: (
+      <svg viewBox="0 0 32 32" className="w-8 h-8" fill="none">
+        <rect x="2" y="6" width="28" height="20" rx="3" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M10 16h12M16 11v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <circle cx="16" cy="16" r="2" fill="currentColor" opacity="0.5"/>
+      </svg>
+    ),
     points: [
       "Hardened 20+ OT systems in a SABIC environment — Windows services, local policies, user access, endpoint protection",
       "Designed full OSIsoft PI System architecture: PI Data Archive, PI AF, PI Vision, interface node across multiple machines",
@@ -20,6 +27,12 @@ const experiences = [
     company: "Fortinet",
     period: "Jun 2024 – Dec 2024",
     color: "#a855f7",
+    logo: (
+      <svg viewBox="0 0 32 32" className="w-8 h-8" fill="none">
+        <path d="M16 4L28 10V22L16 28L4 22V10Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M16 10L22 13V19L16 22L10 19V13Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" opacity="0.5"/>
+      </svg>
+    ),
     points: [
       "Hands-on experience with FortiGate and FortiDeceptor security solutions",
       "Explored threat detection techniques to understand attacker behavior and improve visibility",
@@ -31,6 +44,13 @@ const experiences = [
     company: "KFUPM",
     period: "Aug 2024 – May 2026",
     color: "#ec4899",
+    logo: (
+      <svg viewBox="0 0 32 32" className="w-8 h-8" fill="none">
+        <path d="M16 4L28 10L16 16L4 10Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M8 12v8l8 4l8-4v-8" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <line x1="28" y1="10" x2="28" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+      </svg>
+    ),
     points: [
       "Designed a large-scale enterprise network project for the Network Management & Security course",
       "Led hands-on cybersecurity project: SSH honeypot deployment and attack analysis",
@@ -41,6 +61,13 @@ const experiences = [
     company: "KFUPM",
     period: "May 2023 – Jan 2025",
     color: "#f59e0b",
+    logo: (
+      <svg viewBox="0 0 32 32" className="w-8 h-8" fill="none">
+        <path d="M16 4L28 10L16 16L4 10Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M8 12v8l8 4l8-4v-8" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <line x1="28" y1="10" x2="28" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+      </svg>
+    ),
     points: [
       "Led and instructed a Web Penetration Testing Bootcamp with structured hands-on training",
       "Taught networking fundamentals for cybersecurity to 70+ students",
@@ -51,6 +78,12 @@ const experiences = [
     company: "Oracle",
     period: "Mar 2025 – Jun 2025",
     color: "#14b8a6",
+    logo: (
+      <svg viewBox="0 0 32 32" className="w-8 h-8" fill="none">
+        <ellipse cx="16" cy="16" rx="12" ry="8" stroke="currentColor" strokeWidth="1.5"/>
+        <ellipse cx="16" cy="16" rx="6" ry="4" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
+      </svg>
+    ),
     points: [
       "Promoted cloud computing courses and industry technologies within the university",
       "Supported peer learning — course enrollment, technical questions, platform navigation",
@@ -116,11 +149,16 @@ export default function Experience() {
                 />
                 <div className="glass rounded-2xl p-6 hover:bg-white/[0.07] transition-colors">
                   <div className="flex flex-wrap justify-between items-start gap-2 mb-3">
-                    <div>
-                      <h3 className="text-lg font-semibold text-white">
-                        {exp.role}
-                      </h3>
-                      <p className="text-indigo-400 text-sm">{exp.company}</p>
+                    <div className="flex gap-3">
+                      <span className="mt-1 shrink-0" style={{ color: exp.color }}>
+                        {exp.logo}
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">
+                          {exp.role}
+                        </h3>
+                        <p className="text-indigo-400 text-sm">{exp.company}</p>
+                      </div>
                     </div>
                     <span className="text-xs text-gray-500 glass rounded-lg px-3 py-1">
                       {exp.period}

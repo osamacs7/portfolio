@@ -37,7 +37,7 @@ const links = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="py-24 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

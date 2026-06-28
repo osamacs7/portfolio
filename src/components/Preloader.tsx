@@ -25,9 +25,9 @@ export default function Preloader() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-              className="text-5xl font-bold gradient-text mb-4"
+              className="text-4xl font-bold gradient-text mb-4"
             >
-              OA
+              Osama Alkarnawi
             </motion.div>
             <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden mx-auto">
               <motion.div
